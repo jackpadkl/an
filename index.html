@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="az">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b1420">
+  <title>Ən yaxşı onlayn poker</title>
+  <meta name="description" content="Real oyunçular, müxtəlif poker formatları və istənilən cihazda oyun.">
+  <style>
+    :root {
+      --bg: #0b1420;
+      --bg2: #111f2d;
+      --ink: #f4f0e8;
+      --muted: #a9b4bf;
+      --line: rgba(226, 235, 240, .16);
+      --green: #0d8b68;
+      --green2: #20bd8b;
+      --blue: #8bb8d6;
+      --serif: "Iowan Old Style", "Baskerville", "Palatino Linotype", Georgia, serif;
+      --sans: Inter, "Helvetica Neue", Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { min-height: 100%; background: var(--bg); }
+    body {
+      margin: 0;
+      min-height: 100svh;
+      padding: clamp(22px, 4vw, 54px);
+      display: grid;
+      place-items: center;
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse at 78% 18%, rgba(44, 105, 139, .22), transparent 34%),
+        radial-gradient(ellipse at 18% 85%, rgba(13, 139, 104, .14), transparent 38%),
+        linear-gradient(135deg, #0b1420 0%, #101d2a 54%, #08111b 100%);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+    .shell {
+      position: relative;
+      width: min(100%, 1120px);
+      min-height: min(760px, calc(100svh - 48px));
+      display: grid;
+      grid-template-columns: 1.04fr .96fr;
+      align-items: center;
+      gap: clamp(28px, 5vw, 76px);
+      padding: clamp(28px, 5vw, 66px);
+      border: 1px solid rgba(224, 236, 242, .13);
+      background: linear-gradient(145deg, rgba(23, 39, 54, .86), rgba(8, 17, 27, .76));
+      box-shadow: 0 36px 100px rgba(0,0,0,.38);
+      isolation: isolate;
+    }
+    .shell::before {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border: 1px solid rgba(224,236,242,.07);
+      pointer-events: none;
+      z-index: -1;
+    }
+    .copy { position: relative; z-index: 2; max-width: 570px; }
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 28px;
+      color: #83cbb5;
+      font-size: 10px;
+      font-weight: 750;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before { content: ""; width: 32px; height: 1px; background: var(--green2); }
+    h1 {
+      margin: 0;
+      max-width: 650px;
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: clamp(54px, 7.2vw, 92px);
+      font-weight: 400;
+      line-height: .96;
+      letter-spacing: -.055em;
+      text-wrap: balance;
+    }
+    h1 span { display: block; }
+    .accent-word { color: #8bc9b5; font-style: italic; }
+    .rule { width: 72px; height: 2px; margin: 32px 0 26px; background: linear-gradient(90deg, var(--green2), transparent); }
+    .benefits { display: grid; gap: 17px; margin: 0; padding: 0; list-style: none; }
+    .benefits li {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      color: #e8edf0;
+      font-size: clamp(14px, 1.45vw, 17px);
+      font-weight: 520;
+      line-height: 1.35;
+    }
+    .check {
+      flex: 0 0 22px;
+      width: 22px;
+      height: 22px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(32,189,139,.58);
+      border-radius: 50%;
+      color: #65d5ad;
+      font-size: 12px;
+    }
+    .cta-wrap { margin-top: 38px; }
+    .cta {
+      min-height: 66px;
+      width: min(100%, 340px);
+      padding: 18px 26px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      border: 1px solid rgba(139, 236, 201, .42);
+      border-radius: 3px;
+      background: linear-gradient(110deg, #087b5b, #119d73 58%, #087657);
+      color: #fff;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      box-shadow: 0 14px 36px rgba(0, 115, 82, .25), inset 0 1px 0 rgba(255,255,255,.16);
+      transition: transform .2s ease, filter .2s ease, box-shadow .2s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .cta:hover { transform: translateY(-2px); filter: brightness(1.08); box-shadow: 0 18px 42px rgba(0,115,82,.34); }
+    .cta:focus-visible { outline: 3px solid #a6e8d1; outline-offset: 5px; }
+    .cta .arrow { font-size: 20px; line-height: 1; }
+    .footnote {
+      margin: 22px 0 0;
+      color: #82919e;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+    .visual {
+      position: relative;
+      min-height: 510px;
+      display: grid;
+      place-items: center;
+      perspective: 1000px;
+    }
+    .halo {
+      position: absolute;
+      width: min(90%, 450px);
+      aspect-ratio: 1;
+      border: 1px solid rgba(139,184,214,.2);
+      border-radius: 50%;
+      box-shadow: 0 0 90px rgba(31,119,133,.12), inset 0 0 70px rgba(32,189,139,.06);
+    }
+    .halo::before, .halo::after {
+      content: "";
+      position: absolute;
+      border: 1px solid rgba(139,184,214,.13);
+      border-radius: 50%;
+      inset: 8%;
+    }
+    .halo::after { inset: 17%; border-color: rgba(32,189,139,.15); }
+    .table {
+      position: relative;
+      width: min(100%, 440px);
+      aspect-ratio: 1.04;
+      border-radius: 50%;
+      transform: rotate(-13deg) rotateX(9deg);
+      background:
+        radial-gradient(ellipse at 45% 38%, rgba(24,137,105,.9), rgba(7,75,61,.98) 57%, #061e1b 72%),
+        #07513f;
+      border: 13px solid #182632;
+      box-shadow:
+        0 30px 50px rgba(0,0,0,.48),
+        0 0 0 2px rgba(151,179,188,.3),
+        inset 0 0 0 2px rgba(223,239,232,.14),
+        inset 0 0 45px rgba(0,0,0,.42);
+    }
+    .table::before {
+      content: "";
+      position: absolute;
+      inset: 13px;
+      border: 1px solid rgba(229,242,232,.2);
+      border-radius: 50%;
+    }
+    .table::after {
+      content: "POKER  •  PRIVATE TABLE  •  POKER";
+      position: absolute;
+      left: 50%; top: 13%;
+      transform: translateX(-50%);
+      color: rgba(227,242,232,.42);
+      font-size: 8px;
+      letter-spacing: .24em;
+      white-space: nowrap;
+    }
+    .cards {
+      position: absolute;
+      top: 34%; left: 50%;
+      display: flex; gap: 10px;
+      transform: translate(-50%,-50%) rotate(5deg);
+    }
+    .card {
+      width: 82px; height: 116px;
+      padding: 10px 9px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-radius: 7px;
+      background: linear-gradient(145deg, #fffdf7, #e8e5dc);
+      color: #15232b;
+      box-shadow: 0 13px 20px rgba(0,0,0,.32);
+      font-family: Georgia, serif;
+      font-size: 24px;
+      line-height: 1;
+    }
+    .card:last-child { transform: translateY(9px) rotate(8deg); }
+    .card .suit { align-self: flex-end; font-size: 32px; }
+    .card.red { color: #a43a46; }
+    .chips { position: absolute; left: 50%; top: 66%; display: flex; gap: 12px; transform: translateX(-50%) rotate(4deg); }
+    .chip {
+      width: 55px; height: 55px;
+      border-radius: 50%;
+      border: 6px dashed #c2cbd0;
+      outline: 2px solid rgba(10,20,28,.7);
+      background: radial-gradient(circle, #263c49 0 48%, #111e29 50% 100%);
+      box-shadow: 0 9px 14px rgba(0,0,0,.38);
+    }
+    .chip:nth-child(2) { transform: translateY(-12px); border-color: #75c9ad; }
+    .chip:nth-child(3) { transform: translateY(4px); }
+    .light {
+      position: absolute;
+      width: 160px; height: 420px;
+      right: 8%; top: 0;
+      transform: rotate(28deg);
+      background: linear-gradient(180deg, rgba(111,174,211,.13), transparent 75%);
+      filter: blur(18px);
+      pointer-events: none;
+    }
+    .caption {
+      position: absolute;
+      right: 0; bottom: 8px;
+      color: rgba(211,225,230,.45);
+      font-size: 9px;
+      letter-spacing: .25em;
+      writing-mode: vertical-rl;
+      text-transform: uppercase;
+    }
+    @media (max-width: 760px) {
+      body { padding: 14px; }
+      .shell { min-height: auto; grid-template-columns: 1fr; gap: 10px; padding: 34px 25px 24px; }
+      .copy { order: 1; }
+      .visual { order: 2; min-height: 300px; margin-top: 4px; }
+      .eyebrow { margin-bottom: 20px; font-size: 9px; }
+      h1 { font-size: clamp(48px, 13vw, 72px); }
+      .rule { margin: 24px 0 20px; }
+      .benefits { gap: 13px; }
+      .benefits li { font-size: 14px; }
+      .cta-wrap { margin-top: 28px; }
+      .cta { min-height: 60px; width: 100%; }
+      .footnote { margin-top: 17px; font-size: 8px; }
+      .table { width: min(78vw, 340px); border-width: 10px; }
+      .card { width: 65px; height: 92px; font-size: 20px; }
+      .card .suit { font-size: 26px; }
+      .chip { width: 43px; height: 43px; border-width: 5px; }
+      .caption { right: 2px; bottom: 2px; }
+    }
+    @media (max-width: 360px) {
+      .shell { padding: 28px 18px 20px; }
+      h1 { font-size: 46px; }
+      .benefits li { font-size: 13px; }
+      .visual { min-height: 260px; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; } }
+  </style>
+
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s) {
+      if(f.fbq)return;
+      n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];
+      t=b.createElement(e);t.async=!0;t.src=v;
+      s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)
+    }(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','1399310622039113');
+    fbq('track','PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=1399310622039113&ev=PageView&noscript=1" alt="">
+  </noscript>
+  <!-- End Meta Pixel Code -->
+</head>
+<body>
+  <main class="shell">
+    <section class="copy" aria-labelledby="headline">
+      <p class="eyebrow">Premium onlayn poker təcrübəsi</p>
+      <h1 id="headline">
+        <span>ƏN YAXŞI</span>
+        <span class="accent-word">POKER.</span>
+        <span>ONLAYN.</span>
+      </h1>
+      <div class="rule" aria-hidden="true"></div>
+      <ul class="benefits">
+        <li><span class="check">✓</span><span>Real oyunçular</span></li>
+        <li><span class="check">✓</span><span>Müxtəlif poker formatları</span></li>
+        <li><span class="check">✓</span><span>İstənilən cihazda oyun</span></li>
+      </ul>
+      <div class="cta-wrap">
+        <a class="cta" href="https://t.me/+r-V-K0lUnZRlYWVi" target="_blank" rel="noopener noreferrer"
+           onclick="if (typeof fbq === 'function') fbq('track','Lead');">
+          <span>OYUNA BAŞLA</span><span class="arrow">→</span>
+        </a>
+      </div>
+      <p class="footnote">Sənin oyunun. Sənin seçimin. Sənin anın.</p>
+    </section>
+
+    <section class="visual" aria-label="Premium poker masası">
+      <div class="light"></div>
+      <div class="halo"></div>
+      <div class="table" aria-hidden="true">
+        <div class="cards">
+          <div class="card"><span>A</span><span class="suit">♠</span></div>
+          <div class="card red"><span>K</span><span class="suit">♥</span></div>
+        </div>
+        <div class="chips"><div class="chip"></div><div class="chip"></div><div class="chip"></div></div>
+      </div>
+      <span class="caption">STRATEGY · PRECISION · POKER</span>
+    </section>
+  </main>
+</body>
+</html>
